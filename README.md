@@ -14,4 +14,4 @@ Dans le cadre de notre formation d'ingénieur "Informatique & Réseaux de Commun
 - Fil orange <-> PIN 19
 - Fil bleu <-> 3V
 - Fil vert <-> 0V
-- Fil jaune <-> 20
+- Fil jaune <-> PIN 20
