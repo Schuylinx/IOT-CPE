@@ -9,3 +9,9 @@ Dans le cadre de notre formation d'ingénieur "Informatique & Réseaux de Commun
     - Télécharger et installer [mu editor](https://codewith.mu/en/download)
     - Clôner ce repository dans le dossier de code de mu editor (C:\Users\Username\mu_code)
     - Ca y est ! vous êtes prêts à travailler !
+### 2. Branchement micro:bit <-> écran
+- Fil rouge <-> PIN 0
+- Fil orange <-> PIN 19
+- Fil bleu <-> 3V
+- Fil vert <-> 0V
+- Fil jaune <-> 20
