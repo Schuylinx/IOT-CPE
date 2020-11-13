@@ -7,5 +7,5 @@ Dans le cadre de notre formation d'ingénieur "Informatique & Réseaux de Commun
 ### 1. Commencer
 - Travailler sous Windows 10 :
     - Télécharger et installer [mu editor](https://codewith.mu/en/download)
-    - Clôner ce repository dans le dossier de code de mu editor (C:\Users\<Username>\mu_code)
+    - Clôner ce repository dans le dossier de code de mu editor (C:\Users\Username\mu_code)
     - Ca y est ! vous êtes prêts à travailler !
