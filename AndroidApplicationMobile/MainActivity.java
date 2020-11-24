@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import java.net.UnknownHostException;
 public class MainActivity extends AppCompatActivity {
 
     final int REFRESH_TIME = 10000;
+    final int CLE_CESAR = 1;
 
     // Instanciation des variables liées à l'IHM
     private Button btnStart;
@@ -227,6 +229,38 @@ public class MainActivity extends AppCompatActivity {
             edit2.setText(temperatureValue);
             edit1.setText(lightValue);
         }
+    }
+
+    /**
+     *
+     * Méthode de chiffrement de César
+     *
+     * @param data
+     * @return
+     */
+    private String encodeCesar(String data) {
+        String result = new String();
+        for (int i = 0; i < data.length(); i++) {
+            char ch = (char)(data.charAt(i) + CLE_CESAR);
+            result += ch;
+        }
+        return result;
+    }
+
+    /**
+     *
+     * Méthode de déchiffrement de César
+     *
+     * @param data
+     * @return
+     */
+    private String decodeCesar(String data) {
+        String result = new String();
+        for (int i = 0; i < data.length(); i++) {
+            char ch = (char)(data.charAt(i) - CLE_CESAR);
+            result += ch;
+        }
+        return result;
     }
 
 }
