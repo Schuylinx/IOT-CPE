@@ -2,6 +2,11 @@ package cpe.moi.projet_iot;
 
 import android.os.AsyncTask;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONArray;
+
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -56,11 +61,16 @@ public class ReceiverTask extends AsyncTask<Void, byte[], Void> {
      */
     @Override
     protected void onProgressUpdate(byte[]... data) {
+
         String value = new String(data[0]);
-        // Extraction des valeurs
-        String [] valueReturn = value.split(",",2);
-        String valueTemperature = (valueReturn[0].split(":",2))[1];
-        String valueLight = (valueReturn[1].split(":",2))[1];
-        MaFenetre.setValues(valueTemperature,valueLight);
+        try {
+            JSONObject monObjet = new JSONObject(value);
+            JSONArray tab = (JSONArray)((monObjet.get("data")));
+            String valueTemperature = (String)tab.get(0);
+            String valueLight = (String)tab.get(1);
+            MaFenetre.setValues(valueTemperature,valueLight);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 }
 }
