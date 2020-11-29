@@ -12,7 +12,7 @@ radio.config(channel=1, length=251)
 # Config Serial
 uart.init(baudrate=115200)
 
-def ParsePassword (json):
+def parsePassword (json):
     tmp = json[1:len(json)-1]
     tmp = tmp.replace("\"", "")
     tmp = tmp.split(",")
@@ -20,9 +20,9 @@ def ParsePassword (json):
     return password
 
 def checkPassWord (password):
-    return password == Crypte(NWK_IDFR)
+    return password == NWK_IDFR
 
-def Crypte(msg): # Cesare
+def crypte(msg): # Vigenere
     alpha = ASCII
     cle = ")ow2&9@>-b>ogg*t.:e*,mk>"
     res = ''
@@ -39,7 +39,7 @@ def Crypte(msg): # Cesare
             i = 0
     return res
 
-def Decrypte(msg): # Cesare
+def decrypte(msg): # Vigenere
     alpha = ASCII
     cle = ")ow2&9@>-b>ogg*t.:e*,mk>"
     res = ''
@@ -54,15 +54,14 @@ def Decrypte(msg): # Cesare
             i = 0
     return res
 
-def Send(m):
-    if uart.any():
-        b = []
-        for c in m:
-            b.append(ord(c))
-        d = bytes(b)
-        uart.write(d)
+def send(m):
+    b = []
+    for c in m:
+        b.append(ord(c))
+    d = bytes(b)
+    uart.write(d)
 
-def Receive():
+def receive():
     if uart.any():
         m = uart.readline()
         s = ""
@@ -75,16 +74,18 @@ string = ""
 boucle = False
 while True:
     # Réception du changement de sens -> P
-    string = Receive()
+    string = receive()
     if string != None:
-        if checkPassWord(parsePassword(Decrypte(string))):
+        if checkPassWord(parsePassword(string)):
             boucle = True
+        else:
+            boucle = False
     if boucle:
         # Envoie du changement de sens -> C1
-        radio.send(Crypte(string))
+        radio.send(string)
     # Réception des valeurs [Temp, Lum] de C1
     incomingJSON = radio.receive()
     if incomingJSON != None:
-        if checkPassWord(parsePassword(Decrypte(incomingJSON))):
+        if checkPassWord(parsePassword(incomingJSON)):
             # Envoie des values -> P
-            Send(incomingJSON)
+            send(incomingJSON)
