@@ -15,7 +15,7 @@ import string
 
 PASERELLE_ID = "P"
 PHONE_ID = "T"
-CONTROLLEUR_ID = "C1"
+CONTROLLEUR_ID = "C2"
 HOST           = "0.0.0.0"
 UDP_PORT       = 10000
 MICRO_COMMANDS = ["TL" , "LT"]
@@ -37,7 +37,8 @@ class ThreadedUDPRequestHandler(socketserver.BaseRequestHandler):
         
         if dataStructure["firstData"] != "":
                 if dataStructure["firstData"] in MICRO_COMMANDS: # Send message through UART
-                        #sendUARTMessage(data)
+                        LAST_VALUE = createSendingTrame(PASERELLE_ID,CONTROLLEUR_ID,PASSWORD,dataStructure["firstData"],"Null")
+                        sendUARTMessage(LAST_VALUE)
                         print("Envoi à l'UART - Ordre demandé par téléphone " + dataStructure["firstData"])
                        
                 elif dataStructure["firstData"] == "getValues()": # Sent last value received from micro-controller
