@@ -1,5 +1,4 @@
-package cpe.moi.projet_iot;
-
+package com.example.iot_project;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +26,7 @@ import java.net.UnknownHostException;
  */
 public class MainActivity extends AppCompatActivity {
 
-    final int REFRESH_TIME = 10000;
+    final int REFRESH_TIME = 20000;
     final int CLE_CESAR = 1;
 
     // Instanciation des variables liées à l'IHM
@@ -76,11 +75,13 @@ public class MainActivity extends AppCompatActivity {
                     if (applicationStarted) {
                         editLog.append("----- Arrêt du programme -----\n");
                         btnStart.setText("START");
+                        switchTL.setEnabled(false);
                         editIp.setEnabled(true);
                         editPort.setEnabled(true);
                     } else {
                         editLog.append("----- Mise à jour automatique des valeurs activée -----\n");
                         btnStart.setText("STOP");
+                        switchTL.setEnabled(true);
                         editIp.setEnabled(false);
                         editPort.setEnabled(false);
                         (new Thread() {
@@ -174,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
      * Initialisation du contenu des champs
      */
     private void initConnexionIHM(){
-        editIp.setText("10.0.2.2");
+        editIp.setText("192.168.1.86");
         editPort.setText("10000");
     }
 
@@ -208,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
      * @return String formatée en JSON
      */
     private String formattingDataSent(String data){
-        return "{\"source\":\"T\",\"destination\":\"P\",\"password\":\"ASecurePa$$19989/9\",\"data\":[\""+data+"\",\"\"]}";
+        return "{\"source\":\"T\",\"destination\":\"P\",\"password\":\"ASecurePa$$1998/9\",\"data\":[\""+data+"\",\"Null\"]}";
     }
 
     /**
@@ -218,16 +219,18 @@ public class MainActivity extends AppCompatActivity {
      * @param lightValue String contenant la valeur de l'intensite lumineuse du capteur
      */
     public void setValues(String temperatureValue, String lightValue){
-        if (switchTL.isChecked()){
+        if (switchTL.isChecked() == false){
             lib1.setText("Température en °C");
             lib2.setText("Intensité de la Lumière");
             edit1.setText(temperatureValue);
             edit2.setText(lightValue);
+            switchTL.setText("Température / Lumière");
         } else {
             lib2.setText("Température en °C");
             lib1.setText("Intensité de la Lumière");
             edit2.setText(temperatureValue);
             edit1.setText(lightValue);
+            switchTL.setText("Lumière / Température");
         }
     }
 

@@ -1,4 +1,4 @@
-package cpe.moi.projet_iot;
+package com.example.iot_project;
 
 import android.os.AsyncTask;
 
@@ -72,5 +72,5 @@ public class ReceiverTask extends AsyncTask<Void, byte[], Void> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-}
+    }
 }
