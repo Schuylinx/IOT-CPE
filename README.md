@@ -50,8 +50,8 @@ Pour définir les échanges dans le système un champ < data >  est mis en place
 | Source | Destination | Indice 0 | Indice 1
 |--|--|--|--|
 | C1 | P | int : Température | int : Luminosité
-| P | C1 | string : "TL" ou string : "LT" | ""
-| T | P | string : "TL" ou string : "LT" (pour inverser l'ordre) OU string : "getValues()" (pour récupérer les valeurs) | ""
+| P | C1 | string : "TL" ou string : "LT" | "Null"
+| T | P | string : "TL" ou string : "LT" (pour inverser l'ordre) OU string : "getValues()" (pour récupérer les valeurs) | "Null"
 | P | T | int : Température | int : Luminosité
 
 La structure du JSON est la suivante :
@@ -93,7 +93,7 @@ Demande du changement de l'ordre des capteurs :
 	source : "T",
 	destination : "P",
 	password : "MDPtrèsSécurisé9998",
-	data : ["TL",""]
+	data : ["TL","Null"]
 }
 ```
 
@@ -103,7 +103,7 @@ Communication du changement de l'ordre des capteurs :
 	source : "P",
 	destination : "C1",
 	password : "MDPtrèsSécurisé9998",
-	data : ["TL",""]
+	data : ["TL","Null"]
 }
 ```
 
@@ -113,7 +113,7 @@ Demande des valeurs des capteurs à la passerelle :
 	source : "T",
 	destination : "P",
 	password : "MDPtrèsSécurisé9998",
-	data : ["getValues()",""]
+	data : ["getValues()","Null"]
 }
 ```
 
