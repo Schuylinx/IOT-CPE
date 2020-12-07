@@ -180,30 +180,16 @@ def readOnFile():
         return dataretrun
 # Main program logic follows:
 if __name__ == '__main__':
-if __name__ == '__main__':
-if __name__ == '__main__':
         initUART()
         initUART()
         initUART()
         f= open(FILENAME,"a")
         print ('Press Ctrl-C to quit.')
-        print ('Press Ctrl-C to quit.')
-        print ('Press Ctrl-C to quit.')
-
         server = ThreadedUDPServer((HOST, UDP_PORT), ThreadedUDPRequestHandler)
         server_thread = threading.Thread(target=server.serve_forever)
-        server = ThreadedUDPServer((HOST, UDP_PORT), ThreadedUDPRequestHandler)
-        server_thread = threading.Thread(target=server.serve_forever)
-        server = ThreadedUDPServer((HOST, UDP_PORT), ThreadedUDPRequestHandler)
-        server_thread = threading.Thread(target=server.serve_forever)
-        serverSerial_thread = threading.Thread(target=listenSerial)
-        serverSerial_thread = threading.Thread(target=listenSerial)
         serverSerial_thread = threading.Thread(target=listenSerial)
         serverSerial_thread.daemon = True
         server_thread.daemon = True
-        server_thread.daemon = True
-        server_thread.daemon = True
-
         try:
                 server_thread.start()
                 serverSerial_thread.start()
